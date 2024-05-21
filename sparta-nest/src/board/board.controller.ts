@@ -26,6 +26,12 @@ export class BoardController {
     return await this.boardService.getArticleById(articleId);
   }
 
+  // 새롭게 추가한 API
+  @Get('/hot-articles')
+  async getHotArticles() {
+    return await this.boardService.getHotArticles();
+  }
+
   @Post('/articles')
   createArticle(@Body() data: CreateArticleDto) {
     return this.boardService.createArticle(
@@ -53,6 +59,6 @@ export class BoardController {
     @Param('id') articleId: number,
     @Body() data: DeleteArticleDto,
   ) {
-    return await this.boardService.deleteArticle(articleId, data.password);
+    return this.boardService.deleteArticle(articleId, data.password);
   }
 }
